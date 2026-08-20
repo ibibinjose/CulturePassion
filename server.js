@@ -6,10 +6,10 @@ const app = express();
 const PORT = process.env.PORT || 3030;
 
 // Serve static files from the public folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 // Root directory for documents (the current directory)
-const DOCS_DIR = __dirname;
+const DOCS_DIR = process.cwd();
 
 // Directories to ignore during scanning
 const IGNORE_DIRS = new Set(['node_modules', '.git', 'public', '.agents', '.gemini']);
@@ -227,7 +227,7 @@ app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api') || req.path.includes('.')) {
     return next();
   }
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
 });
 
 // Start Server or Export for Vercel
