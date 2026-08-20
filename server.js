@@ -230,10 +230,14 @@ app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`==================================================`);
-  console.log(`📚 CulturePassion Document Reader running!`);
-  console.log(`🔗 Web Application: http://localhost:${PORT}`);
-  console.log(`==================================================`);
-});
+// Start Server or Export for Vercel
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`==================================================`);
+    console.log(`📚 CulturePassion Document Reader running!`);
+    console.log(`🔗 Web Application: http://localhost:${PORT}`);
+    console.log(`==================================================`);
+  });
+}
+
+module.exports = app;
