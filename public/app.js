@@ -666,6 +666,36 @@ function postProcessContent(containerNode) {
       `;
     }
   });
+
+  // Intercept relative markdown links to open them inside the app view
+  const links = containerNode.querySelectorAll('a');
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.endsWith('.md') && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('/')) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        let currentDir = '';
+        if (activeFilePath.includes('/')) {
+          currentDir = activeFilePath.substring(0, activeFilePath.lastIndexOf('/'));
+        }
+        
+        const parts = currentDir ? currentDir.split('/') : [];
+        const targetParts = href.split('/');
+        
+        for (const p of targetParts) {
+          if (p === '..') {
+            if (parts.length > 0) parts.pop();
+          } else if (p !== '.') {
+            parts.push(p);
+          }
+        }
+        
+        const resolvedPath = parts.join('/');
+        window.location.hash = encodeURIComponent(resolvedPath);
+      });
+    }
+  });
 }
 
 // --- Helper Functions ---
