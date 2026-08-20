@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CulturePass — Seed Deck</title>
+<style>
+  :root{
+    --ink:#16150f; --ink-2:#4a4740; --ink-3:#8a8578;
+    --paper:#fbfaf7; --card:#ffffff; --line:#e4e0d6;
+    --accent:#b4531f; --accent-soft:#f6ece4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#eceae4;color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"kern" 1}
+  .deck{max-width:1180px;margin:0 auto;padding:28px 18px 90px}
+  .bar{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;
+    background:rgba(236,234,228,.94);backdrop-filter:blur(8px);
+    padding:12px 4px;border-bottom:1px solid var(--line);margin-bottom:22px;font-size:13px}
+  .bar strong{letter-spacing:-.02em}
+  .bar .sp{flex:1}
+  .bar button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--card);
+    color:var(--ink-2);border-radius:999px;padding:6px 13px;cursor:pointer}
+  .bar button:hover{border-color:var(--accent);color:var(--accent)}
+  .hint{color:var(--ink-3);font-size:12px}
+
+  .slide{background:var(--paper);border:1px solid var(--line);border-radius:22px;
+    padding:56px 60px;margin:0 0 22px;min-height:600px;
+    display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:26px}
+  .num b{color:var(--accent);font-weight:600}
+  h1{font-size:60px;line-height:1.02;letter-spacing:-.035em;font-weight:600;margin-bottom:18px}
+  h2{font-size:37px;line-height:1.1;letter-spacing:-.028em;font-weight:600;margin-bottom:24px;max-width:22ch}
+  h2.wide{max-width:34ch}
+  .kicker{font-size:19px;line-height:1.5;color:var(--ink-2);max-width:62ch;margin-bottom:24px}
+  p{font-size:16px;line-height:1.6;color:var(--ink-2);max-width:66ch;margin-bottom:14px}
+  .lede{font-size:20px;color:var(--ink);max-width:60ch}
+  em{color:var(--accent);font-style:normal;font-weight:600}
+
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:14px 0 22px}
+  .cols.two{grid-template-columns:repeat(2,1fr)}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .box h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+    font-weight:600;margin-bottom:10px}
+  .box p{font-size:14.5px;margin:0;max-width:none}
+
+  table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:15px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+  td.n,th.n{text-align:right;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-variant-numeric:tabular-nums}
+  tr.tot td{font-weight:700;color:var(--ink);border-bottom:2px solid var(--ink)}
+  tbody tr:last-child td{border-bottom:none}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:10px 0 24px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .stat .v{font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1}
+  .stat .v.acc{color:var(--accent)}
+  .stat .l{font-size:12px;color:var(--ink-3);margin-top:8px;line-height:1.35}
+
+  ul{list-style:none;margin:6px 0 18px}
+  li{font-size:16px;line-height:1.55;color:var(--ink-2);padding-left:22px;position:relative;margin-bottom:11px;max-width:70ch}
+  li:before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;
+    border-radius:50%;background:var(--accent)}
+
+  .note{margin-top:auto;padding-top:22px;border-top:1px solid var(--line);
+    font-size:13.5px;line-height:1.55;color:var(--ink-3);max-width:80ch}
+  .note b{color:var(--ink-2)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+    color:var(--ink-3);letter-spacing:-.01em}
+  .flag{display:inline-block;background:var(--accent-soft);color:var(--accent);
+    font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;
+    padding:4px 10px;border-radius:999px;margin-bottom:18px}
+  .warn{background:#fff;border:1px solid var(--accent);border-radius:16px;padding:22px;margin:6px 0 18px}
+  .warn h3{color:var(--accent);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+  .warn p{max-width:none;margin:0;color:var(--ink)}
+
+  @media (max-width:860px){
+    .slide{padding:34px 26px;min-height:0}
+    h1{font-size:38px} h2{font-size:27px;max-width:none}
+    .cols,.cols.two,.stats{grid-template-columns:1fr}
+  }
+  @media print{
+    @page{size:297mm 167mm;margin:0}
+    html,body{background:#fff}
+    .bar{display:none}
+    .deck{max-width:none;padding:0}
+    .slide{page-break-after:always;break-after:page;border:none;border-radius:0;
+      margin:0;min-height:167mm;height:167mm;padding:16mm 18mm;box-shadow:none;background:#fff;overflow:hidden}
+    h1{font-size:40px} h2{font-size:26px} .stat .v{font-size:26px}
+    table{font-size:12px} th,td{padding:6px 8px} li,p{font-size:13px}
+    .note{font-size:11px}
+  }
+</style>
+</head>
+<body>
+<div class="bar">
+  <strong>CulturePass</strong>
+  <span class="hint">Seed deck · A$2.5M · August 2026</span>
+  <span class="sp"></span>
+  <span class="hint">↑ ↓ to step</span>
+  <button onclick="window.print()">Print / PDF</button>
+</div>
+
+<div class="deck">
+
+<section class="slide">
+  <div class="num">01 — <b>Title</b></div>
+  <h1>CulturePass</h1>
+  <p class="kicker lede">The cultural participation layer for multicultural cities. Discover, join and measure cultural life — from a Malayalam theatre night in Footscray to a Wurundjeri-led walk to a Collingwood warehouse show.</p>
+  <div class="stats">
+    <div class="stat"><div class="v acc">A$2.5M</div><div class="l">Seed round</div></div>
+    <div class="stat"><div class="v">Sep 2026</div><div class="l">Melbourne pilot</div></div>
+    <div class="stat"><div class="v">39</div><div class="l">Screens built and shipping</div></div>
+    <div class="stat"><div class="v">1</div><div class="l">Full-time person, so far</div></div>
+  </div>
+  <div class="note"><b>Bibin Jose</b> · Founder &amp; CEO · cultureos.co@gmail.com<br>
+  <span class="mono">Last weekend in Melbourne there were roughly three hundred cultural events. Unless you were already in the right WhatsApp group, you could not have found most of them.</span></div>
+</section>
+
+<section class="slide">
+  <div class="num">02 — <b>The problem</b></div>
+  <h2>Cultural participation is large, real, and invisible to infrastructure</h2>
+  <div class="cols">
+    <div class="box"><h3>Participants</h3><p>Discovery requires already being inside the community. WhatsApp broadcast lists, closed Facebook groups, flyers in grocery shops. If you are not in, there is no way in.</p></div>
+    <div class="box"><h3>Organisers</h3><p>Mainstream ticketing fees are calibrated for A$80 tickets and consume 15–20% of a A$12 one. So: cash at the door, a spreadsheet, no pre-sale, no data, no evidence for the next grant.</p></div>
+    <div class="box"><h3>Funders</h3><p>Councils and multicultural bodies distribute significant public money and receive back attendance estimates written on the night. There is no instrument.</p></div>
+  </div>
+  <p class="lede">Three problems, one platform. <em>None is solvable alone</em> — participants will not use an empty feed, organisers will not publish to no audience, funders will not licence thin coverage.</p>
+  <div class="note"><b>The wedge:</b> make the single best cultural discovery feed for one metro area, and organisers come because that is where the audience is.</div>
+</section>
+
+<section class="slide">
+  <div class="num">03 — <b>The solution</b></div>
+  <span class="flag">Built · working · not a mockup</span>
+  <h2 class="wide">Discover, join, organise, measure</h2>
+  <div class="cols two">
+    <div class="box"><h3>Discover</h3><p>City feed, natural-language search ("free Malayalam events this weekend"), map, cultural calendar — organised by community, not by a generic "Arts &amp; Culture" category.</p></div>
+    <div class="box"><h3>Join</h3><p>Free RSVP and low-fee ticketing. Digital passes with signed QR codes. Gate check-in that blocks duplicate, cancelled and wrong-event scans.</p></div>
+    <div class="box"><h3>Organise</h3><p>Event wizard, guest lists, co-hosts, verified badges, community and business profiles — and grant acquittal reports.</p></div>
+    <div class="box"><h3>Measure</h3><p>First-party analytics producing the participation, representation and dispersal data that nobody currently supplies to anyone.</p></div>
+  </div>
+  <div class="note mono">39 frontend routes · 15 API modules · 11 database schema groups · AWS CDK (CloudFront, ALB, Fargate, Aurora Serverless v2, Cognito, SQS, SES) · Stripe · signed-token QR validation · all packages typecheck and build clean</div>
+</section>
+
+<section class="slide">
+  <div class="num">04 — <b>Market</b></div>
+  <h2>A$58M Australian SAM, built bottom-up</h2>
+  <p>~50,000 organisations across five Australian metros run at least one public cultural event a year: community associations, places of worship, arts spaces, markets, councils, student societies, language schools.</p>
+  <table>
+    <tr><td>Platform revenue per active host (FY29 modelled)</td><td class="n">A$1,164</td></tr>
+    <tr><td>Australian addressable host base</td><td class="n">~50,000</td></tr>
+    <tr class="tot"><td>Australian SAM, annual platform revenue</td><td class="n">~A$58M</td></tr>
+    <tr><td>FY29 plan position — 4,800 hosts</td><td class="n">under 10%</td></tr>
+    <tr><td>Global extension, ~120 comparable metros</td><td class="n">A$1.0–2.5B</td></tr>
+  </table>
+  <p class="lede">The plan works at <em>under 10% of one country</em>. It does not require category dominance.</p>
+  <div class="note"><b>Context, not our market:</b> the US$1.5T experience economy and US$85B digital-ticketing figures are quoted because the category expects them. No number in our model depends on them.</div>
+</section>
+
+<section class="slide">
+  <div class="num">05 — <b>Product &amp; the wedge</b></div>
+  <h2 class="wide">Discovery is the wedge. Ticketing is a feature.</h2>
+  <p class="lede">The first thing that must be true: CulturePass is the best answer to <em>"what cultural thing is on near me this weekend."</em> Everything else is downstream of that.</p>
+  <ul>
+    <li><b>FY27 supply acquisition is not gated on willingness to pay.</b> We onboard hosts publishing free events aggressively, because feed density <em>is</em> the product.</li>
+    <li><b>Free RSVP events are free forever</b> — architecturally, not as a pricing promise. A free RSVP never touches a payment path, so it cannot accrue a fee.</li>
+    <li><b>Then retention</b> — through the grant acquittal report. Once a host's funded application cites our data, switching costs become real.</li>
+    <li><b>Then the civic product</b> — the measurement layer, which is the smallest revenue line and the largest source of long-term enterprise value.</li>
+  </ul>
+  <div class="note"><b>The obvious challenge, answered:</b> monetising free events would double short-term revenue and end the company's legitimacy. Free events are the majority of cultural life and the reason hosts arrive at all.</div>
+</section>
+
+<section class="slide">
+  <div class="num">06 — <b>Business model</b></div>
+  <h2>Five lines, sequenced so none is load-bearing</h2>
+  <table>
+    <thead><tr><th>Revenue line</th><th>Mechanism</th><th class="n">FY27</th><th class="n">FY29</th></tr></thead>
+    <tbody>
+      <tr><td>Ticketing commission</td><td>3.5% + A$0.80 per paid ticket</td><td class="n">48k</td><td class="n">1.22M</td></tr>
+      <tr><td>Organiser SaaS</td><td>A$29 / 59 / 99 per month</td><td class="n">18k</td><td class="n">0.70M</td></tr>
+      <tr><td>Brand sponsorship</td><td>Category-exclusive native placement</td><td class="n">120k</td><td class="n">2.10M</td></tr>
+      <tr><td>Civic licences</td><td>Council participation dashboards</td><td class="n">0</td><td class="n">0.66M</td></tr>
+      <tr><td>Culture Passion Awards</td><td>Program sponsorship</td><td class="n">0</td><td class="n">0.90M</td></tr>
+      <tr class="tot"><td>Platform revenue</td><td></td><td class="n">A$186k</td><td class="n">A$5.59M</td></tr>
+    </tbody>
+  </table>
+  <div class="warn">
+    <h3>The risk we name before you find it</h3>
+    <p>Sponsorship is 38% of FY29 revenue. A <b>50% sponsorship shortfall costs A$1.05M — nearly twice</b> what a total collapse in paid-ticket share costs. The largest vulnerability in this model is not the thing the company looks like it does. Mitigation: minimum four independent national partners, no single partner above 15% of revenue, 18-month minimum terms.</p>
+  </div>
+  <div class="note">Gross margin moves 66% → 86%. That is <b>mix shift</b> toward sponsorship and licences, not efficiency gains. Anyone reading it as operating leverage has misread it.</div>
+</section>
+
+<section class="slide">
+  <div class="num">07 — <b>Traction</b></div>
+  <h2 class="wide">What is true, and what is not</h2>
+  <div class="cols two">
+    <div class="box">
+      <h3>True today</h3>
+      <p>Production platform built end to end. Purpose-built for Melbourne — diaspora-language search working, city already the default. Culture Passion Awards designed, governed and budgeted. Pilot launches September 2026 across six suburbs.</p>
+    </div>
+    <div class="warn" style="margin:0">
+      <h3>Not true today</h3>
+      <p>No paying customers. No signed sponsors. No committed grants. No launched pilot.<br><br>
+      Every figure in this deck is a planning assumption traced to an explicit driver. <b>The drivers are the thing to challenge.</b></p>
+    </div>
+  </div>
+  <div class="note">This slide is an asset, not a liability. An investor who discovers pre-revenue status by cross-examination discounts everything else; an investor told plainly extends credibility to the rest of the deck.</div>
+</section>
+
+<section class="slide">
+  <div class="num">08 — <b>Public-private alignment</b></div>
+  <h2>Non-dilutive capital as a CAC subsidy, not charity</h2>
+  <div class="stats">
+    <div class="stat"><div class="v acc">A$2.55M</div><div class="l">Grant target, FY27–FY29</div></div>
+    <div class="stat"><div class="v">6</div><div class="l">Funding categories in the pipeline</div></div>
+    <div class="stat"><div class="v">3×</div><div class="l">Pipeline coverage discipline</div></div>
+    <div class="stat"><div class="v">FY28</div><div class="l">Foundation unlocks DGR-restricted capital</div></div>
+  </div>
+  <p>Arts and cultural development · multicultural affairs and social cohesion · tourism and visitor economy · digital inclusion · <b>R&amp;D Tax Incentive</b> — a refundable offset and the most probable line by a wide margin.</p>
+  <p class="lede">Grant capital pays for market-entry CAC in communities where <em>commercial CAC would never justify the spend</em> — and those are exactly the communities that constitute the community graph, which is the moat.</p>
+  <div class="note"><b>Grants are additive, not load-bearing.</b> The business is EBITDA-negative with or without them across all three years, and this round is sized on the commercial case alone.</div>
+</section>
+
+<section class="slide">
+  <div class="num">09 — <b>Financials &amp; unit economics</b></div>
+  <h2>Three years, driver-built</h2>
+  <table>
+    <thead><tr><th>Driver</th><th class="n">FY27</th><th class="n">FY28</th><th class="n">FY29</th></tr></thead>
+    <tbody>
+      <tr><td>Cities live</td><td class="n">1</td><td class="n">5</td><td class="n">8</td></tr>
+      <tr><td>Active verified hosts</td><td class="n">320</td><td class="n">1,600</td><td class="n">4,800</td></tr>
+      <tr><td>Attendances</td><td class="n">96k</td><td class="n">520k</td><td class="n">1.80M</td></tr>
+      <tr><td>GMV</td><td class="n">A$0.80M</td><td class="n">A$5.30M</td><td class="n">A$21.4M</td></tr>
+      <tr class="tot"><td>Platform revenue</td><td class="n">A$186k</td><td class="n">A$1.53M</td><td class="n">A$5.59M</td></tr>
+      <tr><td>Gross margin</td><td class="n">66%</td><td class="n">85%</td><td class="n">86%</td></tr>
+      <tr><td>EBITDA excl. grants</td><td class="n">(1.00M)</td><td class="n">(2.37M)</td><td class="n">(3.97M)</td></tr>
+      <tr><td>Headcount</td><td class="n">6</td><td class="n">17</td><td class="n">38</td></tr>
+    </tbody>
+  </table>
+  <div class="stats">
+    <div class="stat"><div class="v">A$180</div><div class="l">Host CAC</div></div>
+    <div class="stat"><div class="v">A$728</div><div class="l">3-year host LTV</div></div>
+    <div class="stat"><div class="v acc">4.0:1</div><div class="l">LTV : CAC</div></div>
+    <div class="stat"><div class="v">A$3.60</div><div class="l">Participant CAC, blended</div></div>
+  </div>
+  <div class="note"><b>How LTV is built:</b> host-attributable gross profit only — ticketing and SaaS, net of payment and cloud cost. Sponsorship and civic revenue are excluded. Allocating them across hosts would show <b>12:1</b>; that number was deliberately removed because it would not survive diligence.<br>
+  <b>The soft spot:</b> participant CAC of A$3.60 assumes community-led growth works. If acquisition inverts to paid channels, CAC moves toward A$18–25 and the marketing line triples.</div>
+</section>
+
+<section class="slide">
+  <div class="num">10 — <b>The ask &amp; team</b></div>
+  <h2>A$2.5M seed</h2>
+  <table>
+    <thead><tr><th>Allocation</th><th class="n">Share</th><th class="n">Amount</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td>Product &amp; engineering</td><td class="n">45%</td><td class="n">A$1.13M</td><td>4 engineers; payments &amp; auth hardening; acquittal reports; civic dashboard</td></tr>
+      <tr><td>Growth &amp; community</td><td class="n">35%</td><td class="n">A$0.88M</td><td>Melbourne field team; Culture Passion Awards year 1; partnerships</td></tr>
+      <tr><td>Operations &amp; compliance</td><td class="n">20%</td><td class="n">A$0.50M</td><td>Legal, privacy, WCAG 2.2 AA, insurance, procurement readiness</td></tr>
+    </tbody>
+  </table>
+  <div class="warn">
+    <h3>The Series A is gated, not assumed</h3>
+    <p>~A$4.5M in FY28, contingent on <b>ten FY27 exit criteria</b> — host count, month-3 retention ≥60%, paid share ≥26%, one signed civic pilot, 85% gate check-in, WCAG and privacy compliance. If they are missed: Melbourne only, headcount holds at 9, run to grant-plus-sponsorship breakeven. <b>That path is costed. We will not raise into weak retention.</b></p>
+  </div>
+  <p><b>Bibin Jose, Founder &amp; CEO</b> — built the platform end to end: React frontend, Express API, PostgreSQL data model, AWS CDK infrastructure. First hire is a senior engineer in month one, to remove the single-engineer dependency that is the highest-likelihood risk in our register.</p>
+  <div class="note"><b>What kills this company?</b> Not competition — a community trust breach. If we are ever seen as extracting from the communities we serve, the network that carries us also destroys us. Which is why free stays free, individual-level data is never sold, and the Cultural Advisory Council is paid and its cultural determinations are binding.</div>
+</section>
+
+</div>
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  addEventListener('keydown',e=>{
+    if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();i=Math.min(i+1,slides.length-1)}
+    else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();i=Math.max(i-1,0)}
+    else if(e.key==='Home'){i=0} else if(e.key==='End'){i=slides.length-1} else return;
+    slides[i].scrollIntoView({behavior:'smooth',block:'start'});
+  });
+</script>
+</body>
+</html>

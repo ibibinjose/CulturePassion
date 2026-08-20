@@ -1,0 +1,10 @@
+wave,audience_type,organisation,contact_name,role_title,role_verified_date,email,phone,source_of_intro,personalisation_hook,template_id,first_contact_date,touch_count,stage,next_action,next_action_date,objection_raised,outcome,notes
+1,community_partner,,,,,,,,,C1,,0,identified,,,,,
+1,host,,,,,,,,,C2,,0,identified,,,,,
+1,faith_centre,,,,,,,,,C3,,0,identified,,,,,
+1,first_nations,,,,,,,,,C4,,0,identified,,,,,RELATIONSHIP-LED ONLY — no template send
+1,university,,,,,,,,,C5,,0,identified,,,,,
+2,council,,,,,,,,,G2,,0,identified,,,,,Ask who holds budget + FY turnover by meeting 2
+3,grant_body,,,,,,,,,G1,,0,identified,,,,,Verify program name and round at source
+4,sponsor,,,,,,,,,S1,,0,identified,,,,,Do not send without a published commitment to cite
+5,investor,,,,,,,,,I1,,0,identified,,,,,Hold until 60+ days pilot data

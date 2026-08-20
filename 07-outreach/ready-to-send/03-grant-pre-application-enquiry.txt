@@ -1,0 +1,52 @@
+TO:       [Grants Officer / Program Manager]
+ORG:      [Funding body]
+SUBJECT:  [Exact program name] — eligibility enquiry, cultural participation platform
+WAVE:     3 (send 8+ weeks before deadline)
+STATUS:   DRAFT — NOT SENT
+
+---
+
+Dear [First name],
+
+I'm writing regarding [EXACT PROGRAM NAME — verified at their website, with the
+current round confirmed open] to check fit before preparing an application.
+
+CulturePass is an Australian platform that makes cultural events findable,
+joinable and measurable. Community organisations publish events free of charge;
+residents discover them through a mobile-first feed with search in community
+languages; and organisers receive participation data they can use in their own
+funding applications. The platform is built and operating, and launches in
+Melbourne in September 2026.
+
+The activity we would propose is bounded: onboarding [N] cultural organisations
+across [area], with digital capability support delivered in nine languages, and
+aggregate participation reporting covering community engagement, cultural
+representation, geographic dispersal and economic impact.
+
+Two questions before I invest the time in a full application:
+
+  1. Is a proprietary company eligible under this program, or would an auspice
+     arrangement with a DGR-endorsed partner be required?
+
+  2. [ONE SPECIFIC QUESTION about assessment criteria or the current round —
+     shows you have read their guidelines.]
+
+I'd rather check fit than submit something that doesn't align with your
+objectives.
+
+Thank you for your time.
+
+Sincerely,
+
+Bibin Jose
+Founder & CEO, CulturePass
+[PHONE] · cultureos.co@gmail.com
+
+
+---
+PRE-SEND CHECKLIST
+[ ] Program name verified at source (date: ______ )
+[ ] Round confirmed currently open
+[ ] Deadline recorded, 8+ weeks away
+[ ] Guidelines actually read; question 2 is specific to them
+[ ] Fit score recorded (must be >= 18/30 to proceed)

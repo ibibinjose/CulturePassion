@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CulturePassion OS — Documentation Reader</title>
+  <!-- SEO tags -->
+  <meta name="description" content="Local documentation reader and workspace explorer for the CulturePassion project. Browse plans, strategies, pitch decks, and Outreach guidelines.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- PrismJS (Syntax Highlighting) CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="light-mode">
+  <div class="app-container">
+    
+    <!-- Sidebar -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <div class="logo-area">
+          <div class="logo-icon">CP</div>
+          <div>
+            <h1 class="logo-title">CulturePassion</h1>
+            <span class="logo-subtitle">Documentation OS</span>
+          </div>
+        </div>
+        <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close Sidebar" data-lucide="x"></button>
+      </div>
+      
+      <!-- Full-Text Search -->
+      <div class="search-box">
+        <div class="search-input-wrapper">
+          <i class="search-icon" data-lucide="search"></i>
+          <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+          <button id="clearSearchBtn" class="clear-search-btn" aria-label="Clear search" style="display: none;">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <!-- Search Results Panel -->
+        <div class="search-results-panel" id="searchResultsPanel" style="display: none;">
+          <div class="search-results-header">
+            <span>Search Results</span>
+            <button id="closeSearchPanel" class="close-search-panel-btn" data-lucide="x"></button>
+          </div>
+          <div class="search-results-list" id="searchResultsList"></div>
+        </div>
+      </div>
+      
+      <!-- Nav Tree -->
+      <nav class="sidebar-nav" id="sidebarNav">
+        <div class="nav-loading-skeleton">
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Overlay for mobile sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      
+      <!-- Topbar Action Panel -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Open Sidebar">
+            <i data-lucide="menu"></i>
+          </button>
+          <div class="breadcrumbs" id="breadcrumbs">
+            <span class="breadcrumb-item">CulturePassion</span>
+          </div>
+        </div>
+        
+        <div class="topbar-right">
+          <!-- Text size adjusters -->
+          <div class="control-group">
+            <button id="btnTextDec" class="control-btn" title="Decrease Text Size" aria-label="Decrease text size">A-</button>
+            <button id="btnTextInc" class="control-btn" title="Increase Text Size" aria-label="Increase text size">A+</button>
+          </div>
+          
+          <span class="divider"></span>
+          
+          <!-- Print button -->
+          <button id="btnPrint" class="control-btn" title="Print/Save as PDF" aria-label="Print Document">
+            <i data-lucide="printer"></i>
+          </button>
+          
+          <span class="divider"></span>
+          
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="control-btn theme-toggle" title="Toggle Theme" aria-label="Toggle light/dark mode">
+            <i class="theme-icon-light" data-lucide="sun"></i>
+            <i class="theme-icon-dark" data-lucide="moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Document Frame -->
+      <div class="content-wrapper">
+        <!-- Content Pane -->
+        <article class="document-view">
+          <!-- Reading progress bar -->
+          <div class="reading-progress-container">
+            <div class="reading-progress-bar" id="readingProgressBar"></div>
+          </div>
+          
+          <header class="document-header" id="documentHeader">
+            <div class="document-meta">
+              <span id="readTimeMeta"><i data-lucide="clock" class="meta-icon"></i> 0 min read</span>
+              <span id="wordCountMeta"><i data-lucide="file-text" class="meta-icon"></i> 0 words</span>
+            </div>
+            <h1 class="document-title" id="documentTitle">Select a Document</h1>
+          </header>
+          
+          <!-- HTML rendered container -->
+          <div class="document-body" id="documentBody">
+            <div class="welcome-view">
+              <div class="welcome-graphic">
+                <i data-lucide="book-open"></i>
+              </div>
+              <h2>Welcome to the CulturePassion workspace docs</h2>
+              <p>Select a file from the sidebar to start reading, or search for keywords to find relevant sections across business plans, strategy, marketing, outreach, and grants.</p>
+              <div class="quick-links">
+                <button class="quick-link-btn" data-path="brain.md">
+                  <i data-lucide="brain"></i> View Platform Brain
+                </button>
+                <button class="quick-link-btn" data-path="01-business-plan/01-executive-summary.md">
+                  <i data-lucide="sparkles"></i> Read Executive Summary
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right Sidebar Table of Contents (Desktop only) -->
+        <aside class="toc-sidebar" id="tocSidebar">
+          <h3 class="toc-title"><i data-lucide="list"></i> Table of Contents</h3>
+          <ul class="toc-list" id="tocList">
+            <li class="toc-empty">No headings in this document</li>
+          </ul>
+        </aside>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- CDN dependencies -->
+  <!-- MarkedJS (Markdown Parser) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- PrismJS (Syntax Highlighting) -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- App JS -->
+  <script src="/app.js"></script>
+</body>
+</html>

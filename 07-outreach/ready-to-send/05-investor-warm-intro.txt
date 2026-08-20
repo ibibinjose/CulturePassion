@@ -1,0 +1,51 @@
+TO:       [Partner]
+ORG:      [Fund]
+INTRO BY: [Introducer — confirm they have agreed to be named]
+SUBJECT:  Introduced by [Introducer] — CulturePass seed
+WAVE:     5 (DO NOT SEND until the pilot has 60+ days of data)
+STATUS:   DRAFT — NOT SENT
+
+---
+
+Hi [First name],
+
+[Introducer] suggested I get in touch, given [SPECIFIC — their marketplace
+thesis, a named portfolio company, their civic-tech interest].
+
+CulturePass is the cultural participation layer for multicultural cities.
+Community organisations publish events free, residents find them through a feed
+with search in community languages, and attendance is verified at the door —
+which makes cultural participation measurable for the first time.
+
+Three things that might make it worth a conversation:
+
+  - Bottom-up A$58M Australian SAM. Our three-year plan captures under 10% of
+    it. The same structure exists in roughly 120 metros globally.
+
+  - The platform is built and working — 39 screens, production AWS
+    infrastructure, signed-QR gate check-in. I built it. Melbourne pilot
+    launched September 2026, currently [FILL WITH REAL PILOT NUMBERS].
+
+  - The measurement layer is the moat. Once a council reports statutory cultural
+    participation from our data, leaving means re-baselining a time series.
+
+We're raising A$2.5M. Happy to send the deck, or I'd rather show you the working
+product for ten minutes — the duplicate-scan rejection at the gate explains the
+business better than any slide I have.
+
+Would you have 30 minutes in the next fortnight?
+
+Bibin Jose
+Founder & CEO, CulturePass
+[PHONE] · cultureos.co@gmail.com
+
+
+---
+PRE-SEND CHECKLIST
+[ ] Pilot has 60+ days of data
+[ ] Real pilot numbers filled in — no placeholders, no projections stated as fact
+[ ] Introducer has agreed to be named
+[ ] Company incorporated
+[ ] 8-minute demo rehearsed
+[ ] Fund's thesis fit researched; portfolio company named specifically
+[ ] Founder background written up (currently the thinnest part of the pack)
